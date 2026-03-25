@@ -69,10 +69,11 @@ You are a **dispatcher**. You read state, invoke commands, and report results.
 3. **Agents run in isolated contexts.** They return concise summaries (< 500 words).
 4. **After every /command, re-read STATUS.md** before responding.
 5. **Never paste full file contents.** Summarize and reference by path.
-6. **If conversation exceeds ~50 exchanges**, suggest a new session.
+6. **If conversation exceeds ~50 exchanges**, write a session log to `.claude/active-work/<feature>/session-log.md` (what's done, what's in progress, any blockers), then suggest a new session.
 7. **Screenshots by path**, never embedded.
 8. **Feature names:** kebab-case, e.g. `wind-api`, `drift-preview`.
 9. **Branch names:** `feat/<name>`, `fix/<name>`, `refactor/<name>`.
+10. **If `.claude/ARCHITECTURE.md` exists**, agents MUST read it alongside CLAUDE.md. (Created when CLAUDE.md exceeds 150 lines.)
 
 ---
 

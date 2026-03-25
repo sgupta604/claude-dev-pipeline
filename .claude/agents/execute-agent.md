@@ -15,7 +15,7 @@ Read the latest `*_plan.md` from `.claude/features/<feature>/`. If it doesn't ex
 
 ### Phase 1: Load Context
 1. Read the plan doc — tasks, streams, dependencies, acceptance criteria
-2. Read `CLAUDE.md` — project conventions
+2. Read `CLAUDE.md` (+ `.claude/ARCHITECTURE.md` if it exists) — project conventions
 3. Identify which streams go to which agent:
    - `packages/web/` tasks → spawn **frontend-agent**
    - `packages/api/` tasks → spawn **backend-agent**
@@ -74,6 +74,13 @@ Write concise implementation summary when all streams complete.
 **File conflict in parallel streams:**
 1. If detected before spawning: serialize instead of parallelize
 2. If detected after merge: resolve conflicts, re-run tests
+
+**Shared type contract change (critical):**
+If a specialist agent reports that a `packages/shared/` type doesn't match what it needs:
+1. STOP both frontend and backend streams immediately
+2. Update the type in `packages/shared/` to match the agreed contract
+3. Re-run any tasks in either stream that depend on the changed type
+4. Do NOT let agents define local types that shadow shared ones — all cross-package types live in `packages/shared/`
 
 ## Output
 

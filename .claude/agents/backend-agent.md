@@ -128,13 +128,17 @@ class DriftResult(BaseModel):
 All computation in SI. Wind in m/s, distance in meters, altitude in meters, temperature in Celsius, area in m², volume in liters, pressure in hPa.
 
 ## Your Process
-1. Read the task from the execute-agent
+1. Read `CLAUDE.md` (+ `.claude/ARCHITECTURE.md` if it exists) for project conventions
+2. Read the task from the execute-agent
 2. Write or update tests FIRST (TDD)
 3. Implement the code
 4. Run `pytest -v` in packages/api
 5. Run `ruff check` and `mypy --strict`
 6. Verify acceptance criteria from the task
 7. Report what was done, what tests were added, pass/fail status
+
+## Error Handling (additional)
+- **Shared type mismatch:** If your task's response shape doesn't match the type in `packages/shared/`, STOP. Report to execute-agent: "Shared type X needs change: [what]." Do NOT define a local Pydantic model that diverges from the shared contract.
 
 ## Self-Check
 - [ ] All functions have type annotations

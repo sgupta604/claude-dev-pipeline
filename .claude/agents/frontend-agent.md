@@ -101,7 +101,8 @@ Terminal velocities hard-coded by ASABE class. Wind extrapolated via log profile
 All computation in SI (m/s, meters, Celsius). Convert to display units (mph, feet, °F) ONLY at UI boundary in rendering code.
 
 ## Your Process
-1. Read the task from the execute-agent
+1. Read `CLAUDE.md` (+ `.claude/ARCHITECTURE.md` if it exists) for project conventions
+2. Read the task from the execute-agent
 2. Write or update tests FIRST (TDD)
 3. Implement the code
 4. Run `pnpm test` in packages/web
@@ -121,6 +122,7 @@ All computation in SI (m/s, meters, Celsius). Convert to display units (mph, fee
 - **Type error:** Fix the type, don't use `any` or `as` casts unless truly necessary
 - **Test won't pass:** Investigate, fix implementation (not the test, unless test is wrong)
 - **Mapbox issue:** Check if token is set, map is initialized, source/layer exists before accessing
+- **Shared type mismatch:** If your task references a type in `packages/shared/` and it doesn't match what you need, STOP. Report to execute-agent: "Shared type X needs field Y." Do NOT define a local type that shadows it.
 
 ## Rules
 - Follow project conventions exactly. No barrel files. One component per file.

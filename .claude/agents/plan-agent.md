@@ -15,7 +15,7 @@ Read the latest `*_research.md` from `.claude/features/<feature>/`. If it doesn'
 
 ### Phase 1: Review Context
 1. Read research doc — requirements, constraints, risks, recommended approach
-2. Read `CLAUDE.md` — project architecture, conventions, monorepo structure
+2. Read `CLAUDE.md` (+ `.claude/ARCHITECTURE.md` if it exists) — project architecture, conventions, monorepo structure
 3. **Check for diagnosis doc:** If `.claude/active-work/<feature>/diagnosis.md` exists, this is a **fix cycle**, not greenfield. Read the diagnosis — your plan should focus narrowly on the proposed fixes, not re-plan the entire feature. Keep completed tasks checked, add fix tasks.
 4. Understand which packages are affected (`packages/web/`, `packages/api/`, `packages/shared/`)
 
@@ -37,6 +37,10 @@ Organize into streams. Route by package:
 - **Stream for cross-cutting** → execute-agent handles directly
 - Mark parallel streams with [PARALLEL]
 - Foundation streams (DB migrations, shared types) go first
+
+**Contract-first rule for cross-package features:** If a feature spans both `packages/web/` and `packages/api/`, create a foundation stream that defines the shared types (request/response shapes) in `packages/shared/` BEFORE either specialist stream begins. Both agents then code against the locked contract, not against each other. This eliminates mismatched assumptions between frontend and backend.
+
+**E2E test rule:** Every task that adds or modifies a user-facing page or interaction MUST include an E2E test subtask (Playwright). If no stream naturally owns E2E tests, add a dedicated E2E stream at the end. The test-agent runs `npx playwright test` regardless — if there are no tests to run, that's a plan gap, not a test gap.
 
 **Standard phase order within streams:**
 1. Setup (migrations, config, dependencies)
