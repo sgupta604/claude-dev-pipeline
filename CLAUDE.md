@@ -139,8 +139,8 @@ boreas/
 - Redis cache TTL: 1 hour
 
 ### Specs & Reference Docs
-Located in `docs/` at the repo root:
-- `docs/SPEC-007-v2.md` — Full requirements and architecture decisions
+Located in `docs/` at the repo root. Use clean filenames (no spaces or parens).
+- `docs/SPEC.md` — Full requirements and architecture decisions
 - `docs/IMPLEMENTATION-GUIDE.md` — Setup, file structure, patterns
 - `docs/` — Any additional research papers or reference material
 

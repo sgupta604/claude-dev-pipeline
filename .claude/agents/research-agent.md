@@ -13,7 +13,7 @@ You are a Research Agent. You gather all context needed to plan a feature. Thoro
 ### Phase 1: Gather Context
 1. Read `CLAUDE.md` for project architecture and conventions (+ `.claude/ARCHITECTURE.md` if it exists)
 2. Scan recent `.claude/features/*/SUMMARY.md` retrospectives — check "Went Wrong" sections for lessons relevant to this feature area
-3. Read spec docs (`docs/SPEC-007-v2.md`, `docs/IMPLEMENTATION-GUIDE.md`) if they exist
+3. Read spec docs in `docs/` (`SPEC.md`, `IMPLEMENTATION-GUIDE.md`, and any other reference files) if they exist
 4. Note which project phase this feature falls in (1-5)
 5. Check feature dependencies — what must be built first?
 
